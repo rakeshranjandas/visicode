@@ -14,3 +14,9 @@ Create script -> Design set/props/visual elements -> Synchronise movements with 
 # Development Phases
 1) Is the idea feasible: Use whatever knowledge I have and create a prototype. Write visualiser for Kadane's algorithm (using single scene/ inside a single method)
 2) Further Improvements - JS framework choice (React??), Nested scenes (in popups), Variables listener (should log to script if listened variable changes)
+
+
+# Things that may be helpful
+1) React - diff rendering out-of-the-box
+2) Codux - GUI creating of components
+3) D3 - animations
