@@ -36,8 +36,10 @@ function kadaneAlgorithm(arr) {
 
     let maxEndingHere = arr[0];		snapshot.set('maxEndingHere', maxEndingHere);
     let maxSoFar = arr[0]; 			snapshot.set('maxSoFar', maxSoFar);
+    	
+    let i = 0;						snapshot.set('i', i);						
 
-    for (let i = 1; i < arr.length; i++) {
+    for (i = 1; i < arr.length; i++) {
 
     	snapshot.set('i', i);
 
@@ -48,43 +50,47 @@ function kadaneAlgorithm(arr) {
     return maxSoFar;
 }
 
-// Example usage:
-const array = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
-const maxSubarraySum = kadaneAlgorithm(array);
-console.log("Maximum subarray sum is:", maxSubarraySum);
 
-
-
-animate();
-
+$(document).ready(function() {
+	
+	// Example usage:
+	const array = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+	const maxSubarraySum = kadaneAlgorithm(array);
+	console.log("Maximum subarray sum is:", maxSubarraySum);
 
 
 
 
-function animate() {
-
-	let rlogic = createComponentRenderLogic();
+});
 
 
-	console.log(script, rlogic);
-
-	script.forEach(function(shot) {
-		render(shot, rlogic);
-	});
-}
 
 
-function createComponentRenderLogic() {
+function getComponentRenderLogic() {
 
 	return {
 
 		'arr': (value) => {
 			console.log('create arr', value);
+
+
+			let arr_all = '<div style="position:absolute;top:100px;left:200px">';
+			let arr_div_single = (i) => '<div id="arr_'+i+'" style="min-height:100px;min-width:100px;background-color:yellow;display:inline-table;border:1px solid;text-align:center;font-size:2em">'+value[i]+'</div>';
+
+			for (let i = 0; i < value.length; i++)
+				arr_all += arr_div_single(i);
+
+			arr_all += '</div>';
+
+			$('#main_frame').append(arr_all);
+
 		},
 
 
 		'i': (value) => {
 			console.log('i', value);
+
+			$('#arr_'+value).css('background-color', 'red');
 		},
 
 
@@ -104,7 +110,35 @@ function render(shot, rlogic) {
 
 	console.log('------------------------');
 
+	console.log(shot, rlogic);
+
+	clearMainFrame();
+
 	Object.keys(shot).forEach(function(key) {
 		if (typeof rlogic[key] === 'function') rlogic[key](shot[key]);
 	})
+}
+
+
+function clearMainFrame() {
+	$('#main_frame').empty();
+}
+
+
+
+
+
+let frame_i = 0;
+
+
+
+function goPrev() {
+	frame_i = Math.max(frame_i-1, 0);
+	render(script[frame_i], getComponentRenderLogic());
+}
+
+
+function goNext() {
+	frame_i = Math.min(frame_i+1, script.length-1);
+	render(script[frame_i], getComponentRenderLogic());
 }
