@@ -20,3 +20,8 @@ Create script -> Design set/props/visual elements -> Synchronise movements with 
 1) React - diff rendering out-of-the-box
 2) Codux - GUI creating of components
 3) D3 - animations
+
+# Algorithms Planned
+1) Kadane
+2) KMP
+3) Detecting cycles in a directed graph
